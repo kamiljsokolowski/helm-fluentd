@@ -22,6 +22,7 @@
 | kind | string | `"DaemonSet"` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
+| customConfig | bool | `false` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | priorityClassName | string | `""` |  |

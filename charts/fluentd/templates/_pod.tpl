@@ -50,6 +50,11 @@ containers:
     {{- if .Values.extraVolumeMounts }}
       {{- toYaml .Values.extraVolumeMounts | nindent 6 }}
     {{- end }}
+    {{- if .Values.customConfig }}
+      - name: customconfig
+        mountPath: /fluentd/etc/
+        readOnly: true
+    {{- end }}
 volumes:
   - name: varlog
     hostPath:
@@ -59,6 +64,11 @@ volumes:
       path: /var/lib/docker/containers
 {{- if .Values.extraVolumes }}
   {{- toYaml .Values.extraVolumes | nindent 2 }}
+{{- end }}
+{{- if .Values.customConfig }}
+  - name: customconfig
+    configMap:
+      name: {{ include "fluentd.fullname" . }}-custom-config
 {{- end }}
 {{- with .Values.nodeSelector }}
 nodeSelector:

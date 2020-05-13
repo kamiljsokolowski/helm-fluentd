@@ -50,6 +50,8 @@ resources:
 
 nodeSelector: {}
 
+customConfig: false
+
 tolerations: []
 
 affinity: {}
