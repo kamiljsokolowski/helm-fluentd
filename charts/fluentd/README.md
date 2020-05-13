@@ -23,6 +23,8 @@
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | customConfig | bool | `false` |  |
+| extraConfig | bool | `false` |  |
+| extraConfigData | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | priorityClassName | string | `""` |  |

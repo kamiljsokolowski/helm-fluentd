@@ -55,6 +55,11 @@ containers:
         mountPath: /fluentd/etc/
         readOnly: true
     {{- end }}
+    {{- if and (.Values.customConfig) (.Values.extraConfig) }}
+      - name: extraconfig
+        mountPath: /fluentd/etc/config.d/
+        readOnly: true
+    {{- end }}
 volumes:
   - name: varlog
     hostPath:
@@ -69,6 +74,11 @@ volumes:
   - name: customconfig
     configMap:
       name: {{ include "fluentd.fullname" . }}-custom-config
+{{- end }}
+{{- if and (.Values.customConfig) (.Values.extraConfig) }}
+  - name: extraconfig
+    configMap:
+      name: {{ include "fluentd.fullname" . }}-extra-config
 {{- end }}
 {{- with .Values.nodeSelector }}
 nodeSelector:

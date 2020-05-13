@@ -51,6 +51,8 @@ resources:
 nodeSelector: {}
 
 customConfig: false
+extraConfig: true
+extraConfigData: {}
 
 tolerations: []
 

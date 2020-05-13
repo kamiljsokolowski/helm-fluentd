@@ -17,3 +17,17 @@ data:
       bind 0.0.0.0
     </source>
 {{- end }}
+---
+{{- if and (.Values.customConfig) (.Values.extraConfig) }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "fluentd.fullname" . }}-extra-config
+  labels:
+    {{- include "fluentd.labels" . | nindent 4 }}
+data:
+{{- range $key, $value := .Values.extraConfigData }}
+  {{ $key }}: |-
+{{ $value | indent 4 }}
+{{- end }}
+{{- end }}
